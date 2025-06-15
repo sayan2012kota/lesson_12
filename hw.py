@@ -8,13 +8,19 @@ bug = Actor("shark_image")
 ship = Actor("submarine_image")
 speed = 5
 bugs = []
-bugs.append(bug)
-bugs[-1].x = 900
-bugs[-1].y = -100
 bullets = []
+direction = 1
 score = 0
 
 ship.pos = (500, 500)
+
+for I in range(8):
+    bugs.append(Actor("shark_image"))
+    bugs[-1].x = 100 + 80 * I
+    bugs[-1].y = 0
+
+
+
 
 def draw():
     screen.clear()
@@ -53,6 +59,11 @@ def update():
             bullets.remove(Bullet)
             bugs.remove(bug)
             score = score + 1
+    for R in bullets:
+        if R.y < 0:
+            bullets.remove(R)
+        else:
+            R.y = R.y - 5
 
 
 def display_score():
